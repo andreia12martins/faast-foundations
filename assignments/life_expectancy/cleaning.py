@@ -1,5 +1,11 @@
+"""
+Module with cleaning functions
+"""
+
 import argparse
+
 import pandas as pd
+
 
 def clean_data(country="PT") -> None:
     """
@@ -26,10 +32,10 @@ def clean_data(country="PT") -> None:
     data['value'] = data['value'].astype(float)
     data = data[data["region"] == country]
 
+
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Clean life expectancy data for a specific country.")
+    parser = argparse.ArgumentParser(
+        description="Clean life expectancy data for a specific country.")
     parser.add_argument("--country", default="PT")
     args = parser.parse_args()
     clean_data(country=args.country)
-
-

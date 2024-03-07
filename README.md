@@ -136,4 +136,4 @@ The goal of this course is to be your personal companion on being a better progr
 
 Feel free to open [GitHub issues](https://github.com/nosportugal/faast-foundations/issues) to give us feedback and ideas for new features. Or even better, open a [pull request](https://github.com/nosportugal/faast-foundations/pulls) with your suggestions.
 
-[![Python package](https://github.com/andreia12martins/faast-foundations/actions/workflows/python-package.yml/badge.svg?branch=ci&event=status)](https://github.com/andreia12martins/faast-foundations/actions/workflows/python-package.yml)
+[![Python package](https://github.com/andreia12martins/faast-foundations/actions/workflows/python-package.yml/badge.svg?branch=ci)](https://github.com/andreia12martins/faast-foundations/actions/workflows/python-package.yml)

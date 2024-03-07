@@ -3,6 +3,7 @@ Module with cleaning functions
 """
 
 import argparse
+import os
 
 import pandas as pd
 
@@ -14,7 +15,8 @@ def clean_data(country="PT") -> None:
     Raises:
     FileNotFoundError: If the specified file path is incorrect or the file is not found.
     """
-    file_path = '../data/eu_life_expectancy_raw.tsv'
+    print(os.listdir())
+    file_path = 'assignments/life_expectancy/data/eu_life_expectancy_raw.tsv'
     data = pd.read_csv(file_path, delimiter='\t')
     data['unit'] = data['unit,sex,age,geo\\time'].apply(lambda x: x.split(",")[0])
     data['sex'] = data['unit,sex,age,geo\\time'].apply(lambda x: x.split(",")[1])

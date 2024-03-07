@@ -3,7 +3,6 @@ Module with cleaning functions
 """
 
 import argparse
-import os
 
 import pandas as pd
 
@@ -15,7 +14,6 @@ def clean_data(country="PT") -> None:
     Raises:
     FileNotFoundError: If the specified file path is incorrect or the file is not found.
     """
-    print(os.listdir())
     file_path = 'assignments/life_expectancy/data/eu_life_expectancy_raw.tsv'
     data = pd.read_csv(file_path, delimiter='\t')
     data['unit'] = data['unit,sex,age,geo\\time'].apply(lambda x: x.split(",")[0])
@@ -33,6 +31,11 @@ def clean_data(country="PT") -> None:
     data = data.drop(data[data['value'] == ':'].index)
     data['value'] = data['value'].astype(float)
     data = data[data["region"] == country]
+    data.to_csv(
+        "assignments/life_expectancy/data/pt_life_expectancy.csv", 
+        index=False,
+        header=True
+    )
 
 
 if __name__ == "__main__":

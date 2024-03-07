@@ -135,3 +135,5 @@ In it, you'll find a project folder called `life_expectancy` as well as folders 
 The goal of this course is to be your personal companion on being a better programmer. We hope you enjoy it and learn a lot from it.
 
 Feel free to open [GitHub issues](https://github.com/nosportugal/faast-foundations/issues) to give us feedback and ideas for new features. Or even better, open a [pull request](https://github.com/nosportugal/faast-foundations/pulls) with your suggestions.
+
+[![Python package](https://github.com/andreia12martins/faast-foundations/actions/workflows/python-package.yml/badge.svg?branch=ci&event=status)](https://github.com/andreia12martins/faast-foundations/actions/workflows/python-package.yml)

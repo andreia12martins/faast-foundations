@@ -77,7 +77,7 @@ def main(file_path, country="PT"):
     """
     data = load_data(file_path)
     cleaned_data = clean_data(data, country)
-    save_data(cleaned_data, "life_expectancy/data/pt_life_expectancy.csv")
+    save_data(cleaned_data, "assignments/life_expectancy/data/pt_life_expectancy.csv")
 
 
 if __name__ == "__main__":

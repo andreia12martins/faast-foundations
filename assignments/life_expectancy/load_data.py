@@ -1,8 +1,9 @@
 """
 Module for loading data.
 """
-import pandas as pd
 from pathlib import Path
+import pandas as pd
+
 
 def load_data(file_path: Path, separator='\t') -> pd.DataFrame:
     """

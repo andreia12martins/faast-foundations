@@ -3,6 +3,7 @@ Module with cleaning functions
 """
 
 import argparse
+from pathlib import Path
 import pandas as pd
 from life_expectancy.load_data import load_data
 from life_expectancy.save_data import save_data
@@ -45,7 +46,7 @@ def clean_data(data, country="PT") -> pd.DataFrame:
     return cleaned_data
 
 
-def main(path_data_load, path_data_save, country="PT") -> pd.DataFrame:
+def main(load_path, save_path, country="PT") -> pd.DataFrame:
     """
     Main function to load, clean, and save data.
 
@@ -53,9 +54,9 @@ def main(path_data_load, path_data_save, country="PT") -> pd.DataFrame:
     - file_path (str): Path to the data file.
     - country (str): Country code to filter the data.
     """
-    data_raw = load_data(path_data_load)
+    data_raw = load_data(load_path)
     cleaned_data = clean_data(data_raw, country)
-    save_data(cleaned_data, path_data_save)
+    save_data(cleaned_data, save_path)
 
     return cleaned_data
 

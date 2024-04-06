@@ -2,7 +2,7 @@
 import pandas as pd
 import pytest
 
-from . import FIXTURES_DIR, OUTPUT_DIR
+from . import FIXTURES_DIR
 
 
 @pytest.fixture(scope="session")
@@ -13,9 +13,11 @@ def pt_life_expectancy_expected() -> pd.DataFrame:
 
 @pytest.fixture(scope="session")
 def eu_life_expectancy_raw_subset() -> pd.DataFrame:
+    """Fixture to load a raw subset of eu data"""
     return pd.read_csv(FIXTURES_DIR / "eu_life_expectancy_raw.tsv", sep="\t")
 
 
 @pytest.fixture(scope="session")
 def eu_life_expectancy_expected_subset() -> pd.DataFrame:
+    """Fixture to load the expected subset of cleaned eu data"""
     return pd.read_csv(FIXTURES_DIR / "eu_life_expectancy_expected.csv", sep="\t")

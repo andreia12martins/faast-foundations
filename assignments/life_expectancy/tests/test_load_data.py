@@ -1,3 +1,4 @@
+"""Unit test for the load_data function"""
 from unittest.mock import patch
 import pandas as pd
 from life_expectancy.load_data import load_data

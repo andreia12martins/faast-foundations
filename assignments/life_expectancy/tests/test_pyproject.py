@@ -1,11 +1,5 @@
 """
-Unit tests for the pyproject.toml file.
-
-It's very uncommon to write unit tests for a configuration file. However,
-since we are learning, this is a special case.
-
-Once you have ensured that the package and its dependencies are installed,
-feel free to delete this file.
+Module for testing project setup.
 """
 from pkg_resources import DistributionNotFound, get_distribution
 

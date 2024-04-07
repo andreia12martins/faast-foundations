@@ -3,20 +3,10 @@ Module with cleaning functions
 """
 
 import argparse
+from pathlib import Path
 import pandas as pd
-
-
-def load_data(file_path) -> pd.DataFrame:
-    """
-    Loads data from the specified file path.
-
-    Args:
-    - file_path (str): Path to the data file.
-
-    Returns:
-    - pd.DataFrame: Loaded data as a DataFrame.
-    """
-    return pd.read_csv(file_path, delimiter='\t')
+from life_expectancy.load_data import load_data
+from life_expectancy.save_data import save_data
 
 
 def clean_data(data, country="PT") -> pd.DataFrame:
@@ -56,18 +46,7 @@ def clean_data(data, country="PT") -> pd.DataFrame:
     return cleaned_data
 
 
-def save_data(data, file_path):
-    """
-    Saves the data to a specified file path.
-
-    Args:
-    - data (pd.DataFrame): Data to be saved.
-    - file_path (str): Path to save the data file.
-    """
-    data.to_csv(file_path, index=False, header=True)
-
-
-def main(file_path, country="PT"):
+def main(load_path, save_path, country="PT") -> pd.DataFrame:
     """
     Main function to load, clean, and save data.
 
@@ -75,12 +54,17 @@ def main(file_path, country="PT"):
     - file_path (str): Path to the data file.
     - country (str): Country code to filter the data.
     """
-    data = load_data(file_path)
-    cleaned_data = clean_data(data, country)
-    save_data(cleaned_data, "assignments/life_expectancy/data/pt_life_expectancy.csv")
+    data_raw = load_data(load_path)
+    cleaned_data = clean_data(data_raw, country)
+    save_data(cleaned_data, save_path)
+
+    return cleaned_data
 
 
-if __name__ == "__main__":
+if __name__ == "__main__": # pragma: no cover
+    path_data_load = Path(__file__).parents[0] / "data/eu_life_expectancy_raw.tsv"
+    path_data_save = Path(__file__).parents[0] / "data/pt_life_expectancy.csv"
+
     parser = argparse.ArgumentParser(
         description="Clean life expectancy data for a specific country.")
     parser.add_argument("--file_path",
@@ -89,4 +73,5 @@ if __name__ == "__main__":
     parser.add_argument("--country", default="PT",
                         help="Country code to filter the data")
     args = parser.parse_args()
-    main(args.file_path, args.country)
+
+    main(path_data_load, path_data_save, args.country)

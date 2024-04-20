@@ -3,12 +3,80 @@ Module with cleaning functions
 """
 
 import argparse
+from pathlib import Path
+from enum import Enum
 import pandas as pd
 from life_expectancy.load_data import load_data
 from life_expectancy.save_data import save_data
 
 
-def clean_data(data, country="PT") -> pd.DataFrame:
+class Regions(Enum):
+    """Enum representing life expectancy countries."""
+    AL = 'AL'
+    AM = 'AM'
+    AT = 'AT'
+    AZ = 'AZ'
+    BE = 'BE'
+    BG = 'BG'
+    BY = 'BY'
+    CH = 'CH'
+    CY = 'CY'
+    CZ = 'CZ'
+    DE = 'DE'
+    DE_TOT = 'DE_TOT'
+    DK = 'DK'
+    EA18 = 'EA18'
+    EA19 = 'EA19'
+    EE = 'EE'
+    EEA30_2007 = 'EEA30_2007'
+    EEA31 = 'EEA31'
+    EFTA = 'EFTA'
+    EL = 'EL'
+    ES = 'ES'
+    EU27_2007 = 'EU27_2007'
+    EU27_2020 = 'EU27_2020'
+    EU28 = 'EU28'
+    FI = 'FI'
+    FR = 'FR'
+    FX = 'FX'
+    GE = 'GE'
+    HR = 'HR'
+    HU = 'HU'
+    IE = 'IE'
+    IS = 'IS'
+    IT = 'IT'
+    LI = 'LI'
+    LT = 'LT'
+    LU = 'LU'
+    LV = 'LV'
+    MD = 'MD'
+    ME = 'ME'
+    MK = 'MK'
+    MT = 'MT'
+    NL = 'NL'
+    NO = 'NO'
+    PL = 'PL'
+    PT = 'PT'
+    RO = 'RO'
+    RS = 'RS'
+    RU = 'RU'
+    SE = 'SE'
+    SI = 'SI'
+    SK = 'SK'
+    SM = 'SM'
+    TR = 'TR'
+    UA = 'UA'
+    UK = 'UK'
+    XK = 'XK'
+
+    @classmethod
+    def get_countries(cls):
+        """Get all possible countries"""
+        countries = [member.value for member in cls if len(member.value) == 2]
+        return countries
+
+
+def clean_data(data, country=Regions.PT) -> pd.DataFrame:
     """
     This function performs several cleaning operations on the input data:
     1. Splits the 'unit,sex,age,geo\\time' column into separate columns.
@@ -45,7 +113,7 @@ def clean_data(data, country="PT") -> pd.DataFrame:
     return cleaned_data
 
 
-def main(path_data_load, path_data_save, country="PT") -> pd.DataFrame:
+def main(input_path, output_path, country=Regions.PT) -> pd.DataFrame:
     """
     Main function to load, clean, and save data.
 
@@ -53,9 +121,9 @@ def main(path_data_load, path_data_save, country="PT") -> pd.DataFrame:
     - file_path (str): Path to the data file.
     - country (str): Country code to filter the data.
     """
-    data_raw = load_data(path_data_load)
+    data_raw = load_data(input_path)
     cleaned_data = clean_data(data_raw, country)
-    save_data(cleaned_data, path_data_save)
+    save_data(cleaned_data, output_path)
 
     return cleaned_data
 

@@ -1,3 +1,5 @@
+"""Module for generate a data sample"""
+
 import random
 from pathlib import Path
 from life_expectancy.cleaning import clean_data
@@ -5,17 +7,17 @@ import pandas as pd
 from . import OUTPUT_DIR, FIXTURES_DIR
 
 def generate_data_sample(
-        input_path: Path, 
-        region: str, 
-        number_of_rows: int, 
+        input_path: Path,
+        region: str,
+        number_of_rows: int,
         output_path: Path
     ) -> None:
     """
     Generate a data sample based on the given input file, region, and number of rows,
     and save it to the specified output file.
     """
- 
-    with open(input_path, 'r') as file:
+
+    with open(input_path, 'r', encoding='utf-8') as file:
         file = file.readlines()
 
     header = file[0]
@@ -25,14 +27,17 @@ def generate_data_sample(
     while not found_region:
         subset_sample = random.sample(data_rows, number_of_rows)
         found_region = any(region in row for row in subset_sample)
-  
-    with open(output_path, 'w') as file:
+
+    with open(output_path, 'w', encoding='utf-8') as file:
         file.write(header)
         for row in subset_sample:
             file.write(row)
 
 
 def main():
+    """
+    Main function to generate a data sample and corresponding cleaned data.
+    """
     input_path = OUTPUT_DIR / "eu_life_expectancy_raw.tsv"
     output_path = FIXTURES_DIR / "eu_life_expectancy_raw.tsv"
 
@@ -48,8 +53,9 @@ def main():
     expected_cleaned_data = clean_data(data_raw_subset)
     expected_cleaned_data.to_csv("life_expectancy/tests/fixtures/eu_life_expectancy_expected.csv",
                                  sep="\t",
-                                 index=False, 
+                                 index=False,
                                  header=True)
+
 
 if __name__ == "__main__":
     main()

@@ -2,7 +2,7 @@
 Test for get_countries() from the Region class
 """
 
-from life_expectancy.cleaning import Regions
+from life_expectancy.region import Region
 
 
 def test_get_actual_countries():
@@ -14,6 +14,6 @@ def test_get_actual_countries():
         'SE', 'SI', 'SK', 'SM', 'TR', 'UA', 'UK', 'XK'
     ]
 
-    actual_countries = Regions.get_countries()
+    actual_countries = Region.get_countries()
 
     assert expected_countries == actual_countries

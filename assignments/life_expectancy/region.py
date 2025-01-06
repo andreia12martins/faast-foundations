@@ -1,3 +1,5 @@
+"""Module containing Region enum for life expectancy data processing."""
+
 from enum import Enum
 
 class Region(Enum):
@@ -64,9 +66,16 @@ class Region(Enum):
         """Get all possible countries"""
         countries = [member.value for member in cls if len(member.value) == 2]
         return countries
-    
 
 def string_2_enum(region_str: str) -> Region:
+    """Convert a string representation of a region to its corresponding enum.
+    
+    Args:
+        region_str: String representation of the region
+        
+    Returns:
+        Region enum member if found, None otherwise
+    """
     for member in Region:
         if member.value == region_str:
             return member

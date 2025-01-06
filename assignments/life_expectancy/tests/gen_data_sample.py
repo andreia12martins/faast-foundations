@@ -2,7 +2,8 @@
 
 import random
 from pathlib import Path
-from life_expectancy.cleaning import clean_data
+from life_expectancy.cleaning import DataCleaner, CSVDataCleaningStrategy
+from life_expectancy.region import Region
 import pandas as pd
 from . import OUTPUT_DIR, FIXTURES_DIR
 
@@ -50,11 +51,15 @@ def main():
 
     # generate the corresponding cleaned data for the raw subset
     data_raw_subset = pd.read_csv(output_path, delimiter='\t')
-    expected_cleaned_data = clean_data(data_raw_subset)
-    expected_cleaned_data.to_csv("life_expectancy/tests/fixtures/eu_life_expectancy_expected.csv",
-                                 sep="\t",
-                                 index=False,
-                                 header=True)
+    expected_cleaned_data = DataCleaner(
+        CSVDataCleaningStrategy()
+    ).clean_data(data_raw_subset, Region.PT)
+    expected_cleaned_data.to_csv(
+        FIXTURES_DIR / "eu_life_expectancy_expected.csv",
+        sep="\t",
+        index=False,
+        header=True
+    )
 
 
 if __name__ == "__main__":

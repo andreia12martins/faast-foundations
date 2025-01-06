@@ -1,9 +1,7 @@
 """Tests for the cleaning module"""
-from unittest.mock import patch
 import pandas as pd
 from life_expectancy.cleaning import DataCleaner, CSVDataCleaningStrategy
 from life_expectancy.region import Region
-from . import FIXTURES_DIR
 
 def test_clean_data(eu_life_expectancy_raw_subset, eu_life_expectancy_expected_subset):
     """Run the `clean_data` function and compare the output to the expected output"""

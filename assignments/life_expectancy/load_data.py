@@ -6,6 +6,6 @@ import pandas as pd
 
 def load_data(file_path: Path, separator='\t') -> pd.DataFrame:
     """
-    Load data from a CSV file into a pandas DataFrame.
+    Load data from a CSV file into a pandas Dataframe.
     """
     return pd.read_csv(file_path, delimiter=separator)

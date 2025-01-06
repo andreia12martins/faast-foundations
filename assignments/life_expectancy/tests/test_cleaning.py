@@ -3,6 +3,7 @@ import pytest
 import pandas as pd
 from life_expectancy.cleaning import (
     DataCleaner,
+    DataCleaningStrategy,
     CSVDataCleaningStrategy,
     JSONDataCleaningStrategy
 )
@@ -29,13 +30,13 @@ def test_clean_data_json():
         'flag': ['', '', ''],
         'flag_detail': ['', '', '']
     })
-    
+
     expected_output = pd.DataFrame({
         'region': ['PT', 'PT'],
         'year': [2020, 2021],
         'value': [80.1, 80.5]
     })
-    
+
     strategy = DataCleaner(strategy=JSONDataCleaningStrategy())
     actual_cleaned_data = strategy.clean_data(input_data, Region.PT)
     actual_cleaned_data = actual_cleaned_data.reset_index(drop=True)
@@ -44,7 +45,6 @@ def test_clean_data_json():
 
 def test_abstract_strategy():
     """Test that abstract class cannot be instantiated"""
-    from life_expectancy.cleaning import DataCleaningStrategy
-    
+    # pylint: disable=abstract-class-instantiated
     with pytest.raises(TypeError):
         DataCleaningStrategy()

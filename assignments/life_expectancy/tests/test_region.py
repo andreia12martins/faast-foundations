@@ -16,15 +16,15 @@ class TestRegion(unittest.TestCase):
     def test_get_countries(self):
         """Test get_countries returns correct list of two-letter country codes."""
         countries = Region.get_countries()
-        
+
         # Test some expected countries are in the list
         self.assertIn('AL', countries)
         self.assertIn('UK', countries)
-        
+
         # Test that non-country codes are not in the list
         self.assertNotIn('EU28', countries)
         self.assertNotIn('EA19', countries)
-        
+
         # Test that all returned values are 2 characters long
         self.assertTrue(all(len(country) == 2 for country in countries))
 

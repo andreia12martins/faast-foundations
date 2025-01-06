@@ -108,7 +108,7 @@ def clean_data(data, country=Regions.PT) -> pd.DataFrame:
     data['value'] = data['value'].apply(lambda x: x.split(" ")[0])
     data = data.drop(data[data['value'] == ':'].index)
     data['value'] = data['value'].astype(float)
-    cleaned_data = data[data["region"] == country]
+    cleaned_data = data[data["region"] == country.value]
 
     return cleaned_data
 
